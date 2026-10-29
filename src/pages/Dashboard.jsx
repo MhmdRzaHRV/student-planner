@@ -7,6 +7,7 @@ import { Badge, Empty, Money, Progress, Stat } from "../components/ui.jsx";
 import ReceiptForm from "../components/ReceiptForm.jsx";
 import { TaskForm } from "../components/TaskParts.jsx";
 import { LogForm, TimerBox } from "../components/TimeParts.jsx";
+import { nextMilestone, routineStats, tierFor } from "../lib/routine";
 
 export default function Dashboard({ go }) {
   const { data, update, setKey, add } = useStore();
@@ -38,6 +39,10 @@ export default function Dashboard({ go }) {
     return { total: ids.length, done: ids.filter((i) => chk[i]).length };
   })();
 
+  const rs = routineStats(data);
+  const unopened = Array.from({ length: rs.perfect }, (_, i) => i + 1).filter((n) => tierFor(n) && !data.claims.some((c) => c.n === n)).length;
+  const nm = nextMilestone(rs.perfect);
+
   const lowPrep = classes.filter((s) => !(data.sessions[`${s.id}|${today}`] || {}).prep);
   const markPrep = (s) => setKey("sessions", (x) => ({ ...x, [`${s.id}|${today}`]: { ...x[`${s.id}|${today}`], prep: true } }));
 
@@ -59,6 +64,12 @@ export default function Dashboard({ go }) {
         <Stat label="Work this week" value={`${weekWork.toFixed(1)}h`} sub={`work days: ${used}/${settings.workDaysLimit}`} tone={weekWork > settings.workHoursWeekLimit ? "bad" : ""} />
       </div>
       {budget > 0 && <div style={{ margin: "12px 0" }}><Progress value={pct(spent, budget)} over={spent > budget} /></div>}
+
+      {(unopened > 0 || rs.streak > 0) && (
+        <div className="banner gap-top">
+          {unopened > 0 ? <>🎁 You have {unopened} prize{unopened > 1 ? "s" : ""} waiting! <a href="#/rewards">Open {unopened > 1 ? "them" : "it"}</a></> : <>🔥 {rs.streak}-day streak{nm ? ` · ${nm.n - rs.perfect} perfect day${nm.n - rs.perfect === 1 ? "" : "s"} to the next prize` : ""} — <a href="#/rewards">Rewards</a></>}
+        </div>
+      )}
 
       {(urgentLetters.length > 0 || followDue.length > 0) && (
         <div className="banner gap-top">

@@ -13,7 +13,7 @@ export const EXPENSE_CATEGORIES = [
 export const DEFAULT_STORES = [
   "Aldi", "Lidl", "Rewe", "Edeka", "Kaufland", "Penny", "Netto", "dm", "Rossmann", "Müller",
   "Action", "TEDi", "Primark", "H&M", "C&A", "MediaMarkt", "Saturn", "IKEA", "Amazon",
-  "Apotheke", "Deutsche Bahn", "Bäckerei", "Döner",
+  "Apotheke", "Deutsche Bahn", "Bäckerei", "Döner", "Other",
 ];
 
 // Common fixed costs in Germany — so nothing gets forgotten
@@ -100,4 +100,52 @@ export const THEMES = [
   ["dark", "Dark"],
   ["slate", "Gray-blue"],
   ["slate-dark", "Gray-blue (dark)"],
+  ["carbon", "Carbon blue + Mallard green"],
+  ["carbon-dark", "Carbon blue + Mallard green (dark)"],
 ];
+
+// ── Rewards (streak prizes) ──
+export const PRIZE_TIERS = {
+  small: { label: "Small prize", every: 7, icon: "🎁", color: "#3b82f6" },
+  medium: { label: "Medium prize", every: 30, icon: "🏅", color: "#8b5cf6" },
+  big: { label: "Big prize", every: 100, icon: "🏆", color: "#f59e0b" },
+  legendary: { label: "Legendary prize", every: 360, icon: "👑", color: "#ef4444" },
+};
+export const DEFAULT_PRIZES = [
+  ["small", "Coffee or tea at a café ☕"], ["small", "Your favorite snack 🍫"], ["small", "Ice cream 🍦"],
+  ["small", "30 minutes of guilt-free gaming or series 🎮"], ["small", "Listen to a full album, phone away 🎧"], ["small", "Call family or a friend for a long chat 📞"],
+  ["medium", "Pizza or Döner night 🍕"], ["medium", "Movie evening 🎬"], ["medium", "Buy yourself something under €10 🛍️"],
+  ["medium", "Sleep in, no alarm 😴"], ["medium", "Try a new café or bakery 🥐"],
+  ["big", "Dinner at a restaurant 🍽️"], ["big", "Day trip by train 🚆"], ["big", "Buy something under €30 you really want 🎁"], ["big", "A full free day: no studying 🏖️"],
+  ["legendary", "Weekend trip somewhere new ✈️"], ["legendary", "Pick something from your Future wishlist 💎"], ["legendary", "Celebration dinner 🥂"],
+];
+export const RANKS = [
+  [0, "Neuankömmling", "Just arrived"],
+  [7, "Frühaufsteher", "A full perfect week"],
+  [30, "Durchstarter", "30 perfect days"],
+  [100, "Profi", "100 perfect days"],
+  [360, "Meister", "360 perfect days"],
+];
+export const CHALLENGES = [
+  "Learn 5 new German words today 🇩🇪", "Drink a glass of water now 💧", "Walk for 15 minutes outside 🚶", "Tidy your desk for 5 minutes 🧹",
+  "Message someone you haven't talked to in a while 💬", "Read one page of a German text 📖", "Stretch for 5 minutes 🧘", "Plan tomorrow in 3 lines ✍️",
+  "Say one sentence in German to a real person 🗣️", "Put your phone away for 25 minutes (Pomodoro) 🍅",
+];
+export const QUOTES = [
+  "Small steps every day beat big plans someday.",
+  "You didn't come this far to only come this far.",
+  "Future you is watching. Make them proud.",
+  "Discipline is choosing what you want most over what you want now.",
+  "Every perfect day is a brick in the life you're building.",
+  "Hard now, easy later.",
+];
+
+// ── Future (dreams) ──
+export const DREAM_KINDS = {
+  goal: { icon: "🎯", label: "Goals", add: "New goal" },
+  paycheck: { icon: "💶", label: "First paycheck", add: "New wish" },
+  trip: { icon: "✈️", label: "Trips", add: "New trip" },
+  bucket: { icon: "🪣", label: "Bucket list", add: "New item" },
+  motivation: { icon: "🔥", label: "Motivation", add: "New note" },
+};
+export const PRIORITIES = [["1", "⭐ Someday"], ["2", "⭐⭐ Important"], ["3", "⭐⭐⭐ Top priority"]];

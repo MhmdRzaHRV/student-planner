@@ -33,11 +33,12 @@ export function exportSection(key, data) {
     leisure: () => [["Title", "Category", "Address", "Cost", "Visited", "Date", "Rating"], ...data.leisure.map((l) => [l.title, l.category || "", l.address || "", l.estCost || "", l.done ? "Yes" : "No", l.visitedDate || "", l.rating || ""])],
     jobs: () => [["Company", "Position", "Type", "Status", "Contact", "Phone", "Address", "Salary"], ...data.jobs.map((j) => [j.company, j.position || "", j.jobType || "", j.status || "", j.contactPerson || "", j.phone || "", j.address || "", `${j.salary || ""} ${j.salaryUnit || ""}`])],
     vocab: () => [["Artikel", "Word", "Meaning", "Example", "Learned"], ...data.vocab.map((v) => [v.article || "", v.word, v.meaning || "", v.example || "", v.learned ? "Yes" : "No"])],
+    dreams: () => [["Type", "Title", "Priority", "Cost", "Target date", "When", "Done", "Rating", "Note"], ...data.dreams.map((d) => [d.kind, d.title, d.priority || "", d.cost || "", d.target || "", d.when || "", d.done ? "Yes" : "No", d.rating || "", d.note || ""])],
     shopping: () => [["Item", "Quantity", "Store", "Bought"], ...data.shopping.map((s) => [s.text, s.qty || "", s.store || "", s.done ? "Yes" : "No"])],
   };
   downloadCSV(`planner-${key}`, tables[key]());
 }
 export const CSV_SECTIONS = {
   receipts: "Expenses (receipts)", income: "Income", future: "Upcoming expenses", tasks: "Tasks", timeLogs: "Time logs",
-  letters: "Letters", contacts: "Contacts", leisure: "Leisure", jobs: "Jobs", vocab: "German vocabulary", shopping: "Shopping list",
+  letters: "Letters", contacts: "Contacts", leisure: "Leisure", jobs: "Jobs", vocab: "German vocabulary", dreams: "Future & dreams", shopping: "Shopping list",
 };

@@ -13,12 +13,17 @@ import Contacts from "./pages/Contacts.jsx";
 import Leisure from "./pages/Leisure.jsx";
 import Routine from "./pages/Routine.jsx";
 import Settings from "./pages/Settings.jsx";
+import Daily from "./pages/Daily.jsx";
+import Rewards from "./pages/Rewards.jsx";
+import Future from "./pages/Future.jsx";
+import { Flag } from "./components/ui.jsx";
 
 const NAV = [
   ["", [["dashboard", "🏠", "Today", Dashboard]]],
-  ["Money", [["expenses", "💶", "Expenses & income", Expenses], ["shopping", "🛒", "Shopping list", Shopping], ["jobs", "💼", "Jobs", Jobs]]],
+  ["Money", [["expenses", "💶", "Expenses & income", Expenses], ["shopping", "🛒", "Shopping list", Shopping], ["jobs", "💼", "Jobs", Jobs], ["daily", "🧾", "Daily spending", Daily]]],
   ["Study", [["timetable", "📚", "Timetable", Timetable], ["time", "⏱️", "Hours & stats", TimeTracker], ["german", "🇩🇪", "German learning", German]]],
   ["Life", [["routine", "🔁", "Daily routine", Routine], ["tasks", "✅", "Tasks & calendar", Tasks], ["letters", "✉️", "Letters", Letters], ["contacts", "📇", "Contacts", Contacts], ["leisure", "🎡", "Leisure", Leisure]]],
+  ["Fun & future", [["rewards", "🏆", "Rewards & streak", Rewards], ["future", "🚀", "Future & dreams", Future]]],
   ["", [["settings", "⚙️", "Settings & backup", Settings]]],
 ];
 const PAGES = Object.fromEntries(NAV.flatMap(([, items]) => items).map(([k, , , C]) => [k, C]));
@@ -29,10 +34,11 @@ const readHash = () => {
 
 export default function App() {
   const { saveFailed } = useStore();
-  const [page, setPage] = useState(readHash);
+  const [page, setPage] = useState("dashboard");
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
+    window.history.replaceState(window.history.state, "", "#/dashboard");
     const h = () => setPage(readHash());
     window.addEventListener("hashchange", h);
     return () => window.removeEventListener("hashchange", h);
@@ -49,7 +55,7 @@ export default function App() {
     <div className="app">
       {open && <div className="scrim" onClick={() => setOpen(false)} />}
       <aside className={`sidebar ${open ? "open" : ""}`}>
-        <div className="brand">🎓 Student Planner</div>
+        <div className="brand"><Flag /> MyDueetsch</div>
         {NAV.map(([group, items], gi) => (
           <div key={gi}>
             {group && <div className="nav-group">{group}</div>}
@@ -65,11 +71,12 @@ export default function App() {
       <div style={{ flex: 1, minWidth: 0 }}>
         <div className="topbar">
           <button className="btn" onClick={() => setOpen(true)} aria-label="Menu">☰</button>
-          <strong>🎓 Student Planner</strong>
+          <strong><Flag /> MyDueetsch</strong>
         </div>
         <main className="main">
           {saveFailed && <div className="banner">⚠️ Browser storage is full or blocked. Export a JSON backup from Settings.</div>}
           <Page go={go} />
+          <footer className="app-footer">Reza @2026</footer>
         </main>
       </div>
     </div>

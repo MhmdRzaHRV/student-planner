@@ -2,6 +2,7 @@ import { createContext, useContext, useEffect, useMemo, useState } from "react";
 import { loadData, saveData } from "./lib/storage";
 import { uid } from "./lib/utils";
 import { EXPENSE_CATEGORIES, TASK_TYPES } from "./lib/constants";
+import { migrateCategories } from "./lib/categoryMigration";
 
 export const DEFAULTS = {
   settings: {
@@ -17,21 +18,24 @@ export const DEFAULTS = {
     german: { level: "", target: "", examDate: "" },
     categories: EXPENSE_CATEGORIES,
     taskTypes: TASK_TYPES,
+    dailyBudget: 0,
+    firstSalary: 0, // expected first paycheck (used on the Future page)
   },
   receipts: [], income: [], future: [], reconciliations: [],
   courses: [], slots: [], sessions: {}, projects: [], exams: [],
   tasks: [], timeLogs: [], timer: null,
   vocab: [], routines: [], routineChecks: {},
   contacts: [], letters: [], leisure: [], shopping: [], jobs: [],
+  dreams: [], prizes: [], claims: [], // Future page + streak rewards
 };
 
 export function mergeDefaults(loaded) {
   const l = loaded || {};
-  return {
+  return migrateCategories({
     ...DEFAULTS,
     ...l,
     settings: { ...DEFAULTS.settings, ...l.settings, german: { ...DEFAULTS.settings.german, ...(l.settings?.german || {}) } },
-  };
+  });
 }
 
 const Ctx = createContext(null);
@@ -49,10 +53,10 @@ export function StoreProvider({ children }) {
   useEffect(() => {
     const apply = () => {
       const t = data.settings.theme;
-      const slate = t === "slate" || t === "slate-dark";
-      const dark = t === "dark" || t === "slate-dark" || (t === "system" && window.matchMedia("(prefers-color-scheme: dark)").matches);
+      const palette = ["slate", "carbon"].find((p) => t === p || t === `${p}-dark`);
+      const dark = t === "dark" || t.endsWith("-dark") || (t === "system" && window.matchMedia("(prefers-color-scheme: dark)").matches);
       document.documentElement.dataset.theme = dark ? "dark" : "light";
-      if (slate) document.documentElement.dataset.palette = "slate";
+      if (palette) document.documentElement.dataset.palette = palette;
       else delete document.documentElement.dataset.palette;
     };
     apply();

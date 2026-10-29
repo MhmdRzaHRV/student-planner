@@ -34,7 +34,7 @@ export default function ReceiptForm({ initial, onClose, onSaved }) {
 
   return (
     <Modal title={editing ? "Edit receipt" : "New receipt"} onClose={onClose} wide>
-      <form onSubmit={submit}>
+      <form className="receipt-form" onSubmit={submit}>
         <div className="form-row">
           <Field label="Store name *" grow={2}>
             <input list="stores" value={f.store} onChange={(e) => set({ store: e.target.value })} placeholder="e.g. Lidl" autoFocus required />

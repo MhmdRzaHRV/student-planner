@@ -1,7 +1,7 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 
-// base: "./" یعنی روی هر ریپوی GitHub Pages بدون تنظیم اضافه کار می‌کند
+// Use relative asset paths for GitHub Pages deployments.
 export default defineConfig({
   base: "./",
   plugins: [react()],

@@ -157,3 +157,10 @@ export const Datalist = ({ id, options }) => (
     ))}
   </datalist>
 );
+
+// Small German flag as inline SVG (flag emoji don't render on Windows)
+export const Flag = () => (
+  <span className="flag" role="img" aria-label="Germany">
+    <svg viewBox="0 0 5 3" preserveAspectRatio="none"><rect width="5" height="1" fill="#000" /><rect y="1" width="5" height="1" fill="#dd0000" /><rect y="2" width="5" height="1" fill="#ffce00" /></svg>
+  </span>
+);

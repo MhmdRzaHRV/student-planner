@@ -66,6 +66,7 @@ export default function Settings() {
           <h2>💶 Budget & balance</h2>
           <div className="form-row">
             <Field label="Monthly budget (€)"><input inputMode="decimal" value={s.monthlyBudget || ""} onChange={(e) => setSettings({ monthlyBudget: num(e.target.value) })} /></Field>
+            <Field label="Daily budget (€, optional)"><input inputMode="decimal" value={s.dailyBudget || ""} onChange={(e) => setSettings({ dailyBudget: num(e.target.value) })} placeholder="default: monthly ÷ days" /></Field>
           </div>
           <div className="form-row">
             <Field label="Starting balance (€)"><input inputMode="decimal" value={s.openingBalance || ""} onChange={(e) => setSettings({ openingBalance: num(e.target.value) })} /></Field>
