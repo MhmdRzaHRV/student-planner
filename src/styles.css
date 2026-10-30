@@ -57,6 +57,10 @@ input:focus,select:focus,textarea:focus{outline:2px solid var(--accent-2);outlin
 .field{display:flex;flex-direction:column;gap:3px;flex:1 1 150px;min-width:0}
 .field>span{font-size:.8rem;color:var(--muted)}
 .form-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:10px}
+.debt-form{display:grid;grid-template-columns:minmax(0,1fr);gap:12px}
+.debt-card h2{flex-wrap:wrap}
+.debt-card,.debt-note{overflow-wrap:anywhere}
+.debt-note{white-space:pre-wrap}
 @media (max-width:600px){
   .receipt-form .form-row{display:grid;grid-template-columns:minmax(0,1fr);gap:12px}
   .receipt-form .field{width:100%}

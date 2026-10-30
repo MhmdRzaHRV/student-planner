@@ -15,6 +15,7 @@ export function exportSection(key, data) {
   const pay = (id) => (id === "cash" ? "Cash" : data.settings.banks.find((b) => b.id === id)?.name || "");
   const course = (id) => data.courses.find((c) => c.id === id)?.name || "";
   const tables = {
+    debts: () => [["Date", "Person", "Type", "Amount", "Status", "Note"], ...data.debts.map((debt) => [debt.date, debt.person, debt.direction === "borrowed" ? "Borrowed" : "Lent", debt.amount, debt.settled ? "Settled" : "Outstanding", debt.note || ""])],
     receipts: () => [
       ["Date", "Store", "Payment", "Item", "Category", "Price", "Needed", "Receipt total", "Note"],
       ...data.receipts.flatMap((r) =>
@@ -39,6 +40,7 @@ export function exportSection(key, data) {
   downloadCSV(`planner-${key}`, tables[key]());
 }
 export const CSV_SECTIONS = {
+  debts: "Debts & loans",
   receipts: "Expenses (receipts)", income: "Income", future: "Upcoming expenses", tasks: "Tasks", timeLogs: "Time logs",
   letters: "Letters", contacts: "Contacts", leisure: "Leisure", jobs: "Jobs", vocab: "German vocabulary", dreams: "Future & dreams", shopping: "Shopping list",
 };

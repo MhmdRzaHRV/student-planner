@@ -14,13 +14,14 @@ import Leisure from "./pages/Leisure.jsx";
 import Routine from "./pages/Routine.jsx";
 import Settings from "./pages/Settings.jsx";
 import Daily from "./pages/Daily.jsx";
+import Debts from "./pages/Debts.jsx";
 import Rewards from "./pages/Rewards.jsx";
 import Future from "./pages/Future.jsx";
 import { Flag } from "./components/ui.jsx";
 
 const NAV = [
   ["", [["dashboard", "🏠", "Today", Dashboard]]],
-  ["Money", [["expenses", "💶", "Expenses & income", Expenses], ["shopping", "🛒", "Shopping list", Shopping], ["jobs", "💼", "Jobs", Jobs], ["daily", "🧾", "Daily spending", Daily]]],
+  ["Money", [["expenses", "💶", "Expenses & income", Expenses], ["shopping", "🛒", "Shopping list", Shopping], ["jobs", "💼", "Jobs", Jobs], ["daily", "🧾", "Daily spending", Daily], ["debts", "🤝", "Debts & loans", Debts]]],
   ["Study", [["timetable", "📚", "Timetable", Timetable], ["time", "⏱️", "Hours & stats", TimeTracker], ["german", "🇩🇪", "German learning", German]]],
   ["Life", [["routine", "🔁", "Daily routine", Routine], ["tasks", "✅", "Tasks & calendar", Tasks], ["letters", "✉️", "Letters", Letters], ["contacts", "📇", "Contacts", Contacts], ["leisure", "🎡", "Leisure", Leisure]]],
   ["Fun & future", [["rewards", "🏆", "Rewards & streak", Rewards], ["future", "🚀", "Future & dreams", Future]]],
