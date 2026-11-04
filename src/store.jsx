@@ -21,7 +21,7 @@ export const DEFAULTS = {
     dailyBudget: 0,
     firstSalary: 0, // expected first paycheck (used on the Future page)
   },
-  receipts: [], income: [], future: [], reconciliations: [], debts: [],
+  receipts: [], income: [], future: [], reconciliations: [], debts: [], debtPeople: [],
   courses: [], slots: [], sessions: {}, projects: [], exams: [],
   tasks: [], timeLogs: [], timer: null,
   vocab: [], routines: [], routineChecks: {},

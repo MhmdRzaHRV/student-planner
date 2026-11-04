@@ -49,7 +49,11 @@ export default function Dashboard({ go }) {
   return (
     <>
       <div className="page-head">
-        <div><h1>{greeting} 👋</h1><p className="muted">{DAYS[wd]} · {fmtDate(today)}</p></div>
+        <div>
+          <h1>{greeting} 👋</h1>
+          <p className="muted">{DAYS[wd]} · {fmtDate(today)}</p>
+          <button className="btn primary gap-top" onClick={() => go("routine")}>🔁 Open daily routine</button>
+        </div>
         <div className="row">
           <button className="btn primary" onClick={() => setModal("receipt")}>＋ Expense</button>
           <button className="btn" onClick={() => setModal("task")}>＋ Task</button>
