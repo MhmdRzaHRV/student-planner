@@ -35,7 +35,7 @@ export function exportSection(key, data) {
     jobs: () => [["Company", "Position", "Type", "Status", "Contact", "Phone", "Address", "Salary"], ...data.jobs.map((j) => [j.company, j.position || "", j.jobType || "", j.status || "", j.contactPerson || "", j.phone || "", j.address || "", `${j.salary || ""} ${j.salaryUnit || ""}`])],
     vocab: () => [["Artikel", "Word", "Meaning", "Example", "Learned"], ...data.vocab.map((v) => [v.article || "", v.word, v.meaning || "", v.example || "", v.learned ? "Yes" : "No"])],
     dreams: () => [["Type", "Title", "Priority", "Cost", "Target date", "When", "Done", "Rating", "Note"], ...data.dreams.map((d) => [d.kind, d.title, d.priority || "", d.cost || "", d.target || "", d.when || "", d.done ? "Yes" : "No", d.rating || "", d.note || ""])],
-    shopping: () => [["Item", "Quantity", "Store", "Bought"], ...data.shopping.map((s) => [s.text, s.qty || "", s.store || "", s.done ? "Yes" : "No"])],
+    shopping: () => [["Item", "Quantity", "Store", "Bought", "Section", "Approximate price (€)"], ...data.shopping.map((s) => [s.text, s.qty || "", s.store || "", s.done ? "Yes" : "No", s.section === "major" ? "Major purchases" : "Everyday shopping", s.estimatedPrice ?? ""])],
   };
   downloadCSV(`planner-${key}`, tables[key]());
 }
